@@ -13,6 +13,7 @@ class employee{
         this.Level=Level;
         this.Salary=0;
         this.netSalary=0;
+        this.imgurl;
         employeeArr.push(this);
         
     }
