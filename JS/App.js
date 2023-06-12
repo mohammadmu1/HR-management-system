@@ -1,64 +1,80 @@
 'use strict';
+
+let employeeArr = []; // Creating an array to store employee instances
+
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
-let employeeArr=[] 
-
-class employee{
-    constructor(ID , FullName , Department , Level ){
-        this.ID=ID;
-        this.FullName=FullName;
-        this.Department=Department;
-        this.Level=Level;
-        this.Salary=0;
-        this.netSalary=0;
-        this.imgurl;
-        employeeArr.push(this);
-        
-    }
-    setNetSalary= function(){
-        this.netSalary=this.Salary-this.Salary*0.075;      
-    
+class Employee{
+    constructor(EmployeeID, FullName, Department, Level, ImageURL) {
+    this.EmployeeID = EmployeeID;
+    this.FullName = FullName;
+    this.Department = Department;
+    this.Level = Level;
+    this.ImageURL = ImageURL;
+    this.Salary = 0;
+    employeeArr.push(this);
+    this.netSalary = function() {
+    this.Salary = this.Salary - this.Salary * 0.075;
+  }
 }
-    
-    
-} 
+};
 
 
+Employee.prototype.randomSalary = function() {
+  if (this.Level === "Junior") {
+    this.Salary = getRandomNumber(500 , 1000);
+  }
+  if (this.Level === "Mid-Senior") {
+    this.Salary = getRandomNumber(1000,1500 );
+  }
+  if (this.Level === "Senior") {
+    this.Salary = getRandomNumber(1500 , 2000);
+  }
+};
 
-// prototype function to calculate random salary based on level
-employee.prototype.setSalary= function(){
-    if(this.Level=='Senior' || this.Level=='senior' || this.Level=='SENOR'){
-        this.Salary=getRandomNumber(1500 , 2000);
-    }
-    else if(this.Level=='Mid-Senior' || this.Level=='mid-senior' || this.Level=='MID-SENOR'){
-        this.Salary=getRandomNumber(1000,1500);
-    }
-    else {
-        this.Salary=getRandomNumber(500,1000);
-    }
+
+Employee.prototype.renderEmployee = function() {
+  let empData = document.getElementById("employeeData");
+  let img = document.createElement("img");
+  img.src = "assets/emp.png";
+  img.width = 85;
+  let empName = document.createElement("p");
+  empName.textContent = this.FullName;
+  let departmentLevel = document.createElement("p");
+  departmentLevel.textContent = "Department: " + this.Department + " - Level: " + this.Level;
+  let empId = document.createElement("p");
+  empId.textContent = this.EmployeeID;
+  empData.appendChild(img);
+  empData.appendChild(empName);
+  empData.appendChild(departmentLevel);
+  empData.appendChild(empId);
+};
+
+
+let num = 0;
+function idGenerator(num) {
+  let str = num.toString();
+  let string = "0000";
+  let id = string.substring(0, string.length - str.length) + str;
+  return id;
 }
 
-// prototype function to render the employeename and salary and net salary to the main page
-employee.prototype.renderEmoloyee=function() {
-    var node = document.getElementById('info');
-    var newNode = document.createElement('p');
-    newNode.appendChild(document.createTextNode("Employee Name: "+this.FullName+" , "+"Employee Salary: "+this.Salary +" , "+"Employee Net Salary: "+this.netSalary ));
-    node.appendChild(newNode);
-    }
 
-    // creating instances of Employee from class
-let ghazi = new employee(1000, "Ghazi Samer", "Administration", "Senior");
-let lana = new employee(1001, "Lana Ali", "Finance", "Senior");
-let tamara = new employee(1002, "Tamara Ayoub", "Marketing", "Senior");
-let safi = new  employee(1003, "Safi Walid", "Administration", "Mid-Senior");
-let omar = new employee(1004, "Omar Zaid", "Development", "Senior");
-let rana= new employee(1005, "Rana Saleh", "Development", "Junior");
-let hadi = new employee(1006, "Hadi Ahmad", "Finance", "Mid-Senior");
+const myForm = document.getElementById("myForm");
 
-for(let i = 0 ; i < employeeArr.length ; i++) {
-    employeeArr[i].setSalary();
-    employeeArr[i].setNetSalary();
-    employeeArr[i].renderEmoloyee();
+
+myForm.addEventListener("submit", submitHandler);
+
+function submitHandler(event) {
+  event.preventDefault();
+  console.log(event);
+  let fullname = event.target.Name.value;
+  let department = event.target.Department.value;
+  let level = event.target.Level.value;
+  num++;
+  let registeredEmployee = new Employee(idGenerator(num), fullname, department, level);
+  registeredEmployee.randomSalary();
+  registeredEmployee.netSalary();
+  registeredEmployee.renderEmployee();
 }
