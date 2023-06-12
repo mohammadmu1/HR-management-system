@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="accounting.html">Accounting</a></li>
-        
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <nav>
+          <a href="./index.html">Home page</a> |
+          <a href="./accounting.html">Accounting page</a>
+        </nav>
+    </header>
     <hr>
     <main>
-        <h5 id="info"></h4>
+      <section id="employeeData"></section>
+  
+    <form id="myForm">
+      <label for="Name">Full name</label>
+      <input type="text" id="Name">
+      <label for="Department">Department</label>
+      <select name="Department" id="Department">
+        <option value="Administration">Administration</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Development">Development</option>
+        <option value="Finance">Finance</option>
+      </select>
+      <label for="Level">Level</label>
+      <select name="Level" id="Level">
+        <option value="Junior">Junior</option>
+        <option value="Mid-Senior">Mid-Senior</option>
+        <option value="Senior">Senior</option>
+      </select>
+      <label for="Image">Image url</label>
+      <input type="text" id="Image">
+      <input type="submit" value="submit">
+    </form>
     </main>
     <hr>
-<footer><p>&copy; copyright</p>
+<footer><p>&copy; Copy Right</p>
 <p><i>contact me</i></p>
-<a href="https://www.linkedin.com/in/mohammad-mustafa1/" target="_blank"><img src="https://w7.pngwing.com/pngs/887/616/png-transparent-linkedin-icon-linkedin-text-rectangle-logo.png" width="70px"height="50px"></a>
+<a href="https://www.linkedin.com/in/mohammad-mustafa1/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384014.png" width="85px" height="75px"></a>
 </footer>
 <script src="/JS/App.js"></script>
+
 </body>
 </html>
