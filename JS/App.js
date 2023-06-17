@@ -1,11 +1,11 @@
 'use strict';
 
-let employeeArr = []; // Creating an array to store employee instances
+
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-class Employee{
+class employee{
     constructor(EmployeeID, FullName, Department, Level, ImageURL) {
     this.EmployeeID = EmployeeID;
     this.FullName = FullName;
@@ -13,15 +13,15 @@ class Employee{
     this.Level = Level;
     this.ImageURL = ImageURL;
     this.Salary = 0;
-    employeeArr.push(this);
+    
     this.netSalary = function() {
-    this.Salary = this.Salary - this.Salary * 0.075;
+    return ( this.Salary - this.Salary * 0.075);
   }
 }
 };
 
 
-Employee.prototype.randomSalary = function() {
+employee.prototype.randomSalary = function() {
   if (this.Level === "Junior") {
     this.Salary = getRandomNumber(500 , 1000);
   }
@@ -32,9 +32,34 @@ Employee.prototype.randomSalary = function() {
     this.Salary = getRandomNumber(1500 , 2000);
   }
 };
+// ID generator
+let num = 0;
+function idGenerator(num) {
+  let str = num.toString();
+  let string = "0000";
+  let id = string.substring(0, string.length - str.length) + str;
+  return id;
+}
+
+//chose the form
+const myForm = document.getElementById("myForm");
 
 
-Employee.prototype.renderEmployee = function() {
+function submitHandler(event) {
+  event.preventDefault();
+  console.log(event);
+  let fullname = event.target.Name.value;
+  let department = event.target.Department.value;
+  let level = event.target.Level.value;
+  num++;
+  let registeredEmployee = new employee(idGenerator(num), fullname, department, level);
+  registeredEmployee.randomSalary();
+  
+  registeredEmployee.renderEmployee();
+
+}
+
+employee.prototype.renderEmployee=function(){
   let empData = document.getElementById("employeeData");
   let img = document.createElement("img");
   img.src = "assets/emp.png";
@@ -45,36 +70,17 @@ Employee.prototype.renderEmployee = function() {
   departmentLevel.textContent = "Department: " + this.Department + " - Level: " + this.Level;
   let empId = document.createElement("p");
   empId.textContent = this.EmployeeID;
+  let empSalary = document.createElement("p");
+  empSalary.textContent = `the salary is : ${this.Salary}`;
   empData.appendChild(img);
   empData.appendChild(empName);
   empData.appendChild(departmentLevel);
   empData.appendChild(empId);
-};
-
-
-let num = 0;
-function idGenerator(num) {
-  let str = num.toString();
-  let string = "0000";
-  let id = string.substring(0, string.length - str.length) + str;
-  return id;
+  empData.appendChild(empSalary);
 }
-
-
-const myForm = document.getElementById("myForm");
-
 
 myForm.addEventListener("submit", submitHandler);
 
-function submitHandler(event) {
-  event.preventDefault();
-  console.log(event);
-  let fullname = event.target.Name.value;
-  let department = event.target.Department.value;
-  let level = event.target.Level.value;
-  num++;
-  let registeredEmployee = new Employee(idGenerator(num), fullname, department, level);
-  registeredEmployee.randomSalary();
-  registeredEmployee.netSalary();
-  registeredEmployee.renderEmployee();
-}
+
+
+
