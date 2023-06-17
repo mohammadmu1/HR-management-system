@@ -15,7 +15,7 @@ class employee{
     
   }
   setNetSalary() {
-    this.netSalary=( this.Salary - this.Salary * 0.075);
+    this.netSalary=Math.round(( this.Salary - this.Salary * 0.075) * 100) / 100;
 }
 };
 
@@ -68,7 +68,7 @@ employee.prototype.renderEmployee=function(){
   let departmentLevel = document.createElement("p");
   departmentLevel.textContent = "Department: " + this.Department + " - Level: " + this.Level;
   let empId = document.createElement("p");
-  empId.textContent = this.EmployeeID;
+  empId.textContent = `ID : ${this.EmployeeID}`;
   let empSalary = document.createElement("p");
   empSalary.textContent = `the net salary is : ${this.netSalary}`;
   empData.appendChild(img);
