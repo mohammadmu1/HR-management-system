@@ -11,10 +11,11 @@ class employee{
     this.Level = Level;
     this.ImageURL = ImageURL;
     this.Salary = 0;
+    this.netSalary = 0;
     
-    this.netSalary = function() {
-    return ( this.Salary - this.Salary * 0.075);
   }
+  setNetSalary() {
+    this.netSalary=( this.Salary - this.Salary * 0.075);
 }
 };
 
@@ -45,14 +46,14 @@ const myForm = document.getElementById("myForm");
 
 function submitHandler(event) {
   event.preventDefault();
-  console.log(event);
+  
   let fullname = event.target.Name.value;
   let department = event.target.Department.value;
   let level = event.target.Level.value;
   num++;
   let registeredEmployee = new employee(idGenerator(num), fullname, department, level);
   registeredEmployee.randomSalary();
-  
+  registeredEmployee.setNetSalary();
   registeredEmployee.renderEmployee();
 
 }
@@ -69,7 +70,7 @@ employee.prototype.renderEmployee=function(){
   let empId = document.createElement("p");
   empId.textContent = this.EmployeeID;
   let empSalary = document.createElement("p");
-  empSalary.textContent = `the salary is : ${this.Salary}`;
+  empSalary.textContent = `the net salary is : ${this.netSalary}`;
   empData.appendChild(img);
   empData.appendChild(empName);
   empData.appendChild(departmentLevel);
