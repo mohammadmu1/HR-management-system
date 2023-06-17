@@ -15,7 +15,7 @@ class employee{
     
   }
   setNetSalary() {
-    this.netSalary=( this.Salary - this.Salary * 0.075);
+    this.netSalary=Math.round(( this.Salary - this.Salary * 0.075) * 100) / 100;;
 }
 };
 
