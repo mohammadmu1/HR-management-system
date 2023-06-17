@@ -19,7 +19,7 @@ class employee{
 }
 };
 
-
+//generate salary depend on experince level
 employee.prototype.randomSalary = function() {
   if (this.Level === "Junior") {
     this.Salary = getRandomNumber(500 , 1000);
@@ -40,10 +40,11 @@ function idGenerator(num) {
   return id;
 }
 
-//chose the form
+//chose the form to set event on it
 const myForm = document.getElementById("myForm");
-
-
+//start of event 
+myForm.addEventListener("submit", submitHandler);
+//take data from user by submit evnet
 function submitHandler(event) {
   event.preventDefault();
   
@@ -57,7 +58,7 @@ function submitHandler(event) {
   registeredEmployee.renderEmployee();
 
 }
-
+//render employee data that taken from user in html page 
 employee.prototype.renderEmployee=function(){
   let empData = document.getElementById("employeeData");
   let img = document.createElement("img");
@@ -78,7 +79,7 @@ employee.prototype.renderEmployee=function(){
   empData.appendChild(empSalary);
 }
 
-myForm.addEventListener("submit", submitHandler);
+
 
 
 
