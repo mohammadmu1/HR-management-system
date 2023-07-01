@@ -138,7 +138,7 @@ function renderAllEmployeeInfo(){
   avgSal.textContent=`$${(totlaSalary/employeesNumber).toFixed(2)}`;
 }
   else{
-    avgSal.textContent=`$${0}`
+    avgSal.textContent=`$${0}}`
   }
 
 }
