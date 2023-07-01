@@ -1,8 +1,6 @@
-'use strict';
-
-
+'use strict'
 let emp=[];
-// localStorage.clear();
+
 // save objects to Locala Storage
 function saveDataToLocalaStorage(){
 
@@ -10,11 +8,16 @@ function saveDataToLocalaStorage(){
   localStorage.setItem('employeesData' , stringData);
   localStorage.setItem('num' , num.toString());
   }
-
+  function renderAll(){
+    let length=emp.length;
+    for(let i=0;i<length;i++){
+      emp[i].renderEmployee();
+    }
+  }
   // retrive objects from Locala Storage
   function getDataFromLocalaStorageToRender(){
     let stringData=localStorage.getItem('employeesData');
-    arrObj=JSON.parse(stringData);
+    let arrObj=JSON.parse(stringData);
     
     if(arrObj != null){
     for(let i=0 ; i<arrObj.length;i++){
@@ -24,7 +27,7 @@ function saveDataToLocalaStorage(){
       emp[i].setNetSalary();
       num=Number(localStorage.getItem('num'));
     }
-    
+    renderAll();
   }
     
   }
@@ -109,14 +112,10 @@ empData.appendChild(empId);
 empData.appendChild(empSalary);
 }
 
-function renderAll(){
-  let length=emp.length;
-  for(let i=0;i<length;i++){
-    emp[i].renderEmployee();
-  }
-}
+
 getDataFromLocalaStorageToRender();
-renderAll();
+
+
 let cBtn=document.getElementById('clearButton');
 
 cBtn.addEventListener("click",(event)=>{
