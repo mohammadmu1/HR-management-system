@@ -1,177 +1,142 @@
 'use strict';
+let adminstrationEmplyees=[];
+let marketingEmplyees=[];
+let developmentEmplyees=[];
+let financeEmplyees=[];
+let employeesNumber=0;
+let totlaSalary=0;
+class employee{
 
-let retrievedArr,objArr;
-function getData( ) {     //get the data from localstorage into array
-  retrievedArr = localStorage.getItem("employees");
-  objArr=JSON.parse(retrievedArr)
-  }
-  getData()
-  console.log(objArr)
-
- let admEmployees=0, markEmployees=0,devEmployees=0,finEmployees =0;
-  function numberOfEmployees(){   //function to calc number of employees in each department
-  for(let i=0;i<objArr.length;i++){
-  switch (objArr[i].Department){
-  case "Administration":
-  admEmployees++;
-  break;
-  case "Marketing":
-  markEmployees++;
-  break;
-  case "Development" :
-  devEmployees++
-  break;
-  case "Finance" :
-  finEmployees++;
-  break;
-  }
-}}
-numberOfEmployees()
-
-let admSalary=0, markSalary=0,devSalary=0,finSalary =0;
-function totalSalary(){  // function to calc total salary in each department
-  for(let i=0;i<objArr.length;i++){
-    switch (objArr[i].Department){
-      case "Administration":
-      admSalary+=objArr[i].Salary;
-      break;
-      case "Marketing":
-      markSalary+=objArr[i].Salary;
-      break;
-      case "Development" :
-      devSalary+=objArr[i].Salary;
-      break;
-      case "Finance" :
-      finSalary+=objArr[i].Salary;
-      break;
-      }
-}}
-totalSalary()
-
-function precisionRound() { //function to round the total salary to 3 digits precision
- let factor = Math.pow(10, 3);
-  for(let i=0;i<objArr.length;i++)
-   Math.round(objArr[i].Salary * factor) / factor;
+  constructor(EmployeeID, FullName, Department, Level, ImageURL,Salary) {
+  this.EmployeeID = EmployeeID;
+  this.FullName = FullName;
+  this.Department = Department;
+  this.Level = Level;
+  this.ImageURL = ImageURL;
+  this.Salary = Salary;
+  this.netSalary = Math.round(( this.Salary - this.Salary * 0.075) * 100) / 100;;
 }
-precisionRound() 
 
-  function renderTable() {
-    let tableEle=document.getElementById("table")
-    let tr1El = document.createElement("tr");  //1st row (headings)
+}
 
-    let th1El = document.createElement("th");
-    th1El.textContent="Depatrment";
-    tr1El.appendChild(th1El)
+function getDataFromLocalaStorageToRender(){
+  let stringData=localStorage.getItem('employeesData');
+  let arrObj=JSON.parse(stringData);
+  if(arrObj != null){
+    for(let i=0 ; i<arrObj.length;i++){
+    //(EmployeeID, FullName, Department, Level, ImageURL,Salary)
+    let emp=new employee(arrObj[i].EmployeeID , arrObj[i].FullName , arrObj[i].Department,arrObj[i].Level,
+      arrObj[i].ImageURL,arrObj[i].Salary);
 
-    let th2El = document.createElement("th");
-    th2El.textContent="Number of Employees";
-    tr1El.appendChild(th2El)
-
-    let th3El = document.createElement("th");
-    th3El.textContent="Total Salary";
-    tr1El.appendChild(th3El)
-
-    let th4El = document.createElement("th");
-    th4El.textContent="Average Salary";
-    tr1El.appendChild(th4El)
-
-    let tr2El = document.createElement("tr");  //2nd row
-
-    let td1= document.createElement("th")
-    td1.textContent="Administration"
-    tr2El.appendChild(td1)
-
-    let td2= document.createElement("td")       //total number of administration employees
-    td2.textContent=admEmployees
-    tr2El.appendChild(td2)
-
-    let td3= document.createElement("td")      //total number of administration salaries
-    td3.textContent=admSalary
-    tr2El.appendChild(td3)
-
-    let td4= document.createElement("td")     // administration avg salary
-    td4.textContent=Math.round(admSalary/admEmployees)
-    tr2El.appendChild(td4)
-
-    let tr3El = document.createElement("tr");  //3rd row
-
-    let td5= document.createElement("th")
-    td5.textContent="Marketing"
-    tr3El.appendChild(td5)
-
-    let td6= document.createElement("td")       //total number of marketing employees
-    td6.textContent=markEmployees
-    tr3El.appendChild(td6)
-
-    let td7= document.createElement("td")       //total number of marketing salaries
-    td7.textContent=markSalary
-    tr3El.appendChild(td7)
-
-    let td8= document.createElement("td")       // avg salary of marketing
-    td8.textContent=Math.round(markSalary/markEmployees)
-    tr3El.appendChild(td8)
-
-    let tr4El = document.createElement("tr");  //4th row
-
-    let td9= document.createElement("th")
-    td9.textContent="Development"
-    tr4El.appendChild(td9)
-
-    let td10= document.createElement("td")        //total number of develpoment employees
-    td10.textContent=devEmployees
-    tr4El.appendChild(td10)
-
-    let td11= document.createElement("td")        //total number of develpoment salaries
-    td11.textContent=devSalary
-    tr4El.appendChild(td11)
-
-    let td12= document.createElement("td")      //avg salary of development
-    td12.textContent=Math.round(devSalary/devEmployees)
-    tr4El.appendChild(td12)
-
-    let tr5El = document.createElement("tr");  //5th row
-
-    let td13= document.createElement("th")
-    td13.textContent="Finance"
-    tr5El.appendChild(td13)
-
-    let td14= document.createElement("td")     //total number of finance employees
-    td14.textContent=finEmployees
-    tr5El.appendChild(td14)
-
-    let td15= document.createElement("td")    //total number of finance salaries
-    td15.textContent=finSalary
-    tr5El.appendChild(td15)
-
-    let td16= document.createElement("td")
-    td16.textContent=Math.round(finSalary/finEmployees)  //avg salary for finance
-    tr5El.appendChild(td16)
-
-    let tablefoot = document.createElement("tfoot") //table footer
-    let tr6El = document.createElement("tr");  //6th row
-    tablefoot.appendChild(tr6El)
-    
-    let td17= document.createElement("th")
-    td17.textContent="Total"
-    tr6El.appendChild(td17)
-
-    let td18= document.createElement("td")
-    td18.textContent=admEmployees+markEmployees+devEmployees+finEmployees; // total employees of all depatrments
-    tr6El.appendChild(td18)
-
-    let td19= document.createElement("td")
-    td19.textContent=Math.round(admSalary+markSalary+devSalary+finSalary);    // total salary of all depatrments
-    tr6El.appendChild(td19)
-
-    let td20= document.createElement("td")
-    td20.textContent=Math.round(td19.textContent/4)  //average salary for all departments=total salary for all departments/4
-    tr6El.appendChild(td20)
-
-    tableEle.appendChild(tr1El);
-    tableEle.appendChild(tr2El);
-    tableEle.appendChild(tr3El);
-    tableEle.appendChild(tr4El);
-    tableEle.appendChild(tr5El);
-    tableEle.appendChild(tablefoot);
+      if(emp.Department=='Administration'){
+        adminstrationEmplyees.push(emp);
+      }
+      else if(emp.Department=='Marketing'){
+        marketingEmplyees.push(emp);
+      }
+      else if(emp.Department=='Development'){
+        developmentEmplyees.push(emp);
+      }
+      else{
+        financeEmplyees.push(emp);
+      }
     }
-    renderTable() 
+  
+}
+}
+function renderAll(){
+  renderAdminstration();
+  renderMarketing();
+  renderDevelopment();
+  renderFinance();
+  renderAllEmployeeInfo();
+}
+
+function renderAdminstration(){
+  
+  let numE=document.getElementById('adm-num');
+  let length=adminstrationEmplyees.length;
+  numE.textContent=length;
+  employeesNumber+=length;
+  if(length !=0){
+  let sum=0;
+  for(let i=0;i<length;i++){
+    sum+=Number(adminstrationEmplyees[i].Salary);
+  }
+  let avgS=document.getElementById('adm-avg');
+  avgS.textContent=`$${(sum/length).toFixed(2)}`;
+
+  let totS=document.getElementById('adm-tot');
+  totS.textContent=`$${sum}`;
+  totlaSalary+=sum;
+}
+
+}
+function renderMarketing(){
+  let numE=document.getElementById('mark-num');
+  let length=marketingEmplyees.length;
+  numE.textContent=length;
+  employeesNumber+=length;
+  if(length !=0){
+  let sum=0;
+  for(let i=0;i<length;i++){
+    sum+=Number(marketingEmplyees[i].Salary);
+  }
+  let avgS=document.getElementById('mark-avg');
+  avgS.textContent=`$${(sum/length).toFixed(2)}`;
+
+  let totS=document.getElementById('mark-tot');
+  totS.textContent=`$${sum}`;
+  totlaSalary+=sum;
+  }
+  
+}
+function renderDevelopment(){
+  let numE=document.getElementById('dev-num');
+  let length=developmentEmplyees.length;
+  numE.textContent=length;
+  employeesNumber+=length;
+  if(length !=0){
+  let sum=0;
+  for(let i=0;i<length;i++){
+    sum+=Number(developmentEmplyees[i].Salary);
+  }
+  let avgS=document.getElementById('dev-avg');
+  avgS.textContent=`$${(sum/length).toFixed(2)}`;
+
+  let totS=document.getElementById('dev-tot');
+  totS.textContent=`$${sum}`;
+  totlaSalary+=sum;
+  }
+}
+function renderFinance(){
+  let numE=document.getElementById('fin-num');
+  let length=financeEmplyees.length;
+  numE.textContent=length;
+  employeesNumber+=length;
+  if(length !=0){
+  let sum=0;
+  for(let i=0;i<length;i++){
+    sum+=Number(financeEmplyees[i].Salary);
+  }
+  let avgS=document.getElementById('fin-avg');
+  avgS.textContent=`$${(sum/length).toFixed(2)}`;
+
+  let totS=document.getElementById('fin-tot');
+  totS.textContent=`$${sum}`;
+  totlaSalary+=sum;
+  }
+}
+function renderAllEmployeeInfo(){
+  let num=document.getElementById('emp-num');
+  num.textContent=employeesNumber;
+  let totSal=document.getElementById('tot-sal');
+  totSal.textContent=`$${totlaSalary}`;
+  if(employeesNumber != 0){
+  let avgSal=document.getElementById('avg-sal')
+  avgSal.textContent=`$${(totlaSalary/employeesNumber).toFixed(2)}`;
+}
+}
+
+getDataFromLocalaStorageToRender();
+renderAll();

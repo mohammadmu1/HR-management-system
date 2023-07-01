@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accounting</title>
-    <link rel="stylesheet" href="./CSS/reset.css">
-    <link rel="stylesheet" href="./CSS/stylesheet.css">
+    <link rel="stylesheet" href="./style/Reset.css">
+    <link rel="stylesheet" href="./style/Acc.css">
+    
 </head>
 <body>
     <header>
@@ -18,13 +19,58 @@
     </header>
     <hr>
     <main>
-        <table id="table"></table>
+        <table id="employeeData">
+            <tr>
+            <th>Department Name</th>
+            <th>Number of Employees</th>
+            <th>Average Salary</th>
+            <th>Total Salary</th>
+            </tr>
+            <tr>
+            <td>Administration</td>
+            <td id="adm-num"></td>
+            <td id="adm-avg"></td>
+            <td id="adm-tot"></td>
+            </tr>
+            <tr>
+            <td>Marketing</td>
+            <td id="mark-num"></td>
+            <td id="mark-avg"></td>
+            <td id="mark-tot"></td>
+            </tr>
+            <tr>
+            <td>Development</td>
+            <td id="dev-num"></td>
+            <td id="dev-avg"></td>
+            <td id="dev-tot"></td>
+            <tr></tr>
+            <td>Finance</td>
+            <td id="fin-num"></td>
+            <td id="fin-avg"></td>
+            <td id="fin-tot"></td>
+            </tr>
+            </table>
+            
     </main>
 <hr>
-    <footer><p>&copy; copyright</p>
+    <footer>
+        <table id="total-inf">
+            <tr>
+                <th>Total Number of Employees</th>
+                <th>Average Salary for All Departments</th>
+                <th>Total Salary for All Departments</th>
+            </tr>
+            <tr>
+                <td id="emp-num"></td>
+                <td id="avg-sal"></td>
+                <td id="tot-sal"></td>
+            </tr>
+          </table>
+        <br><br><br>
+        <p>&copy; copyright</p>
         <p><i>contact me</i></p>
         <a href="https://www.linkedin.com/in/mohammad-mustafa1/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384014.png" width="85px" height="75px"></a>
         </footer>
-        <script src="JS/acc.js"></script>
+        <script src="./JS/acc.js"></script>
 </body>
 </html>
