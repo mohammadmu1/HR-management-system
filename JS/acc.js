@@ -132,10 +132,15 @@ function renderAllEmployeeInfo(){
   num.textContent=employeesNumber;
   let totSal=document.getElementById('tot-sal');
   totSal.textContent=`$${totlaSalary}`;
+  let avgSal=document.getElementById('avg-sal')
   if(employeesNumber != 0){
   let avgSal=document.getElementById('avg-sal')
   avgSal.textContent=`$${(totlaSalary/employeesNumber).toFixed(2)}`;
 }
+  else{
+    avgSal.textContent=`$${0}`
+  }
+
 }
 
 getDataFromLocalaStorageToRender();
