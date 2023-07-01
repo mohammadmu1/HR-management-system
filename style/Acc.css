@@ -1,0 +1,87 @@
+/* Acc.css */
+/* General styles for the entire page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  nav a {
+    margin: 0 10px;
+  }
+  
+  /* Main content styles */
+  main {
+    padding: 20px;
+  }
+  
+  #employeeData {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #employeeData th, #employeeData td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #employeeData th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  #employeeData tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  #total-inf {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #total-inf th, #total-inf td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #total-inf th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  #total-inf tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  
+  /* Contact me link */
+  footer a {
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  /* LinkedIn icon */
+  footer img {
+    margin-top: 10px;
+  }
+  
