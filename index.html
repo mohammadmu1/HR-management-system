@@ -5,22 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="style/Reset.css">
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <header>
         <nav>
-          <a href="./index.html">Home</a> |
-          <a href="./accounting.html">Accounting</a>
+          <a href="./index.html">Home </a> |
+          <a href="./accounting.html"> Accounting</a>
         </nav>
     </header>
     <hr>
     <main>
       <section id="employeeData"></section>
-      
+  
     <form id="myForm">
       <label for="Name">Full name</label>
-      <input type="text" id="Name">
+      <input type="text" id="Name" required>
       <label for="Department">Department</label>
       <select name="Department" id="Department">
         <option value="Administration">Administration</option>
@@ -37,14 +38,15 @@
       <label for="Image">Image url</label>
       <input type="text" id="Image">
       <input type="submit" value="submit">
-    </form>
+    </form><br><br>
+    <button id="clearButton">Clear Local Storage</button>
     </main>
     <hr>
 <footer><p>&copy; Copy Right</p>
 <p><i>contact me</i></p>
 <a href="https://www.linkedin.com/in/mohammad-mustafa1/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384014.png" width="85px" height="75px"></a>
 </footer>
-<script src="JS/App.js"></script>
+<script src="/JS/App.js"></script>
 
 </body>
 </html>
