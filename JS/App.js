@@ -48,9 +48,9 @@ myForm.addEventListener("submit", submitHandler);
 function submitHandler(event) {
   event.preventDefault();
   
-  let fullname = event.target.Name.value;
-  let department = event.target.Department.value;
-  let level = event.target.Level.value;
+  let fullname = document.getElementById('Name').value;
+  let department =document.getElementById("Department").value;
+  let level = document.getElementById("Level").value;
   num++;
   let registeredEmployee = new employee(idGenerator(num), fullname, department, level);
   registeredEmployee.randomSalary();
